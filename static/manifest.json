@@ -1,23 +1,26 @@
 {
-    "name": "Digital Footprint Analyzer",
-    "short_name": "Footprint Analyzer",
-    "description": "Cybersecurity-focused digital footprint analysis tool.",
-    "start_url": "/",
-    "display": "standalone",
-    "background_color": "#05070d",
-    "theme_color": "#00e5ff",
-    "orientation": "portrait-primary",
-    "icons": [{
-            "src": "/static/icons/icon-192.png",
-            "sizes": "192x192",
-            "type": "image/png",
-            "purpose": "any maskable"
-        },
-        {
-            "src": "/static/icons/icon-512.png",
-            "sizes": "512x512",
-            "type": "image/png",
-            "purpose": "any maskable"
-        }
-    ]
+  "id": "/",
+  "name": "Digital Footprint Analyzer",
+  "short_name": "Footprint Analyzer",
+  "description": "Digital Footprint Analyzer cybersecurity application",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#050505",
+  "theme_color": "#050505",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
 }
