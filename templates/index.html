@@ -11,6 +11,11 @@
 
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 
+    <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
+    <meta name="theme-color" content="#050505">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+
 </head>
 
 <body>
@@ -809,5 +814,14 @@ Warning: suspicious request detected"></textarea>
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 
 </body>
+    <script>
+if ("serviceWorker" in navigator) {
+    window.addEventListener("load", function () {
+        navigator.serviceWorker.register(
+            "{{ url_for('static', filename='sw.js') }}"
+        );
+    });
+}
+</script>
 
 </html>
