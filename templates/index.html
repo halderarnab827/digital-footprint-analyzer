@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Digital Footprint Analyzer</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+    <div class="bg-grid"></div>
+    <div class="bg-glow glow-one"></div>
+    <div class="bg-glow glow-two"></div>
+    <div class="scan-beam"></div>
+
+    <!-- ================================================= -->
+    <!-- HEADER -->
+    <!-- ================================================= -->
+
+    <header class="topbar">
+
+        <div class="brand">
+
+            <div class="brand-mark">
+                DF
+            </div>
+
+            <div>
+                <div class="brand-name">
+                    DIGITAL<span>FOOTPRINT</span>
+                </div>
+
+                <div class="brand-sub">
+                    CYBER INTELLIGENCE PLATFORM
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="top-status">
+
+            <span class="live-dot"></span>
+
+            <span id="backendStatus">
+                BACKEND ONLINE
+            </span>
+
+        </div>
+
+    </header>
+
+
+    <!-- ================================================= -->
+    <!-- MAIN -->
+    <!-- ================================================= -->
+
+    <main class="app-container">
+
+
+        <!-- HERO -->
+
+        <section class="hero">
+
+            <div class="hero-left">
+
+                <div class="eyebrow">
+                    OSINT / SECURITY / INTELLIGENCE
+                </div>
+
+                <h1>
+                    FIND THE
+                    <span>DIGITAL</span> FOOTPRINT.
+                </h1>
+
+                <p>
+                    A security-focused intelligence dashboard for analyzing public usernames, network services, IP information and security logs.
+                </p>
+
+                <div class="hero-pills">
+
+                    <span>OSINT</span>
+                    <span>NETWORK</span>
+                    <span>LOG ANALYSIS</span>
+                    <span>IP INTELLIGENCE</span>
+
+                </div>
+
+            </div>
+
+
+            <!-- RADAR -->
+
+            <div class="radar-area">
+
+                <div class="radar">
+
+                    <div class="radar-ring ring-a"></div>
+                    <div class="radar-ring ring-b"></div>
+                    <div class="radar-ring ring-c"></div>
+
+                    <div class="radar-line horizontal"></div>
+                    <div class="radar-line vertical"></div>
+
+                    <div class="radar-sweep"></div>
+
+                    <div class="radar-point point-a"></div>
+                    <div class="radar-point point-b"></div>
+                    <div class="radar-point point-c"></div>
+
+                    <div class="radar-center">
+                        +
+                    </div>
+
+                </div>
+
+                <div class="radar-label">
+                    LIVE THREAT RADAR
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================================================= -->
+        <!-- NAVIGATION -->
+        <!-- ================================================= -->
+
+        <section class="navigation">
+
+            <button class="nav-btn active" data-section="footprint">
+
+                <span>01</span>
+                FOOTPRINT SCAN
+
+            </button>
+
+            <button class="nav-btn" data-section="ports">
+
+                <span>02</span>
+                PORT SCANNER
+
+            </button>
+
+            <button class="nav-btn" data-section="logs">
+
+                <span>03</span>
+                LOG ANALYZER
+
+            </button>
+
+            <button class="nav-btn" data-section="ip">
+
+                <span>04</span>
+                IP INTELLIGENCE
+
+            </button>
+
+        </section>
+
+
+        <!-- ================================================= -->
+        <!-- FOOTPRINT SECTION -->
+        <!-- ================================================= -->
+
+        <section id="footprint" class="tool-section active-section">
+
+            <div class="section-header">
+
+                <div>
+                    <div class="section-code">
+                        MODULE 01
+                    </div>
+
+                    <h2>
+                        Digital Footprint Scan
+                    </h2>
+
+                    <p>
+                        Search publicly accessible profiles across multiple platforms.
+                    </p>
+                </div>
+
+                <div class="module-badge">
+                    OSINT
+                </div>
+
+            </div>
+
+
+            <div class="scanner-box">
+
+                <div class="input-label">
+                    TARGET USERNAME
+                </div>
+
+                <div class="scan-input-row">
+
+                    <div class="input-box">
+
+                        <span class="prefix">
+                            @
+                        </span>
+
+                        <input id="username" type="text" maxlength="50" placeholder="enter_username" autocomplete="off">
+
+                        <span id="usernameIndicator" class="input-indicator">
+                        </span>
+
+                    </div>
+
+
+                    <button id="scanBtn" class="primary-btn">
+
+                        <span class="btn-icon">⌁</span>
+
+                        START SCAN
+
+                        <span class="btn-arrow">
+                            →
+                        </span>
+
+                    </button>
+
+                </div>
+
+
+                <div class="input-note">
+                    Public profile availability only. No passwords or private information are accessed.
+                </div>
+
+            </div>
+
+
+            <!-- SCAN STATUS -->
+
+            <div id="scanProgress" class="progress-panel hidden">
+
+                <div class="progress-top">
+
+                    <span>
+                        SCAN IN PROGRESS
+                    </span>
+
+                    <span id="scanProgressText">
+                        0 / 0
+                    </span>
+
+                </div>
+
+                <div class="progress-track">
+                    <div id="scanProgressBar"></div>
+                </div>
+
+                <div id="scanCurrent">
+                    Initializing intelligence engine...
+                </div>
+
+            </div>
+
+
+            <!-- OVERVIEW -->
+
+            <div class="overview-grid">
+
+                <div class="metric-card">
+
+                    <div class="metric-icon">
+                        ◉
+                    </div>
+
+                    <div>
+                        <small>
+                            TOTAL CHECKS
+                        </small>
+
+                        <strong id="total">
+                            0
+                        </strong>
+                    </div>
+
+                </div>
+
+
+                <div class="metric-card found">
+
+                    <div class="metric-icon">
+                        ✓
+                    </div>
+
+                    <div>
+                        <small>
+                            FOUND
+                        </small>
+
+                        <strong id="found">
+                            0
+                        </strong>
+                    </div>
+
+                </div>
+
+
+                <div class="metric-card blocked">
+
+                    <div class="metric-icon">
+                        !
+                    </div>
+
+                    <div>
+                        <small>
+                            BLOCKED
+                        </small>
+
+                        <strong id="blocked">
+                            0
+                        </strong>
+                    </div>
+
+                </div>
+
+
+                <div class="metric-card">
+
+                    <div class="metric-icon">
+                        ×
+                    </div>
+
+                    <div>
+                        <small>
+                            NOT FOUND
+                        </small>
+
+                        <strong id="notFound">
+                            0
+                        </strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- INTELLIGENCE -->
+
+            <div class="intelligence-grid">
+
+                <div class="info-panel">
+
+                    <span>
+                        SCANNED USERNAME
+                    </span>
+
+                    <strong id="resultUsername">
+                        —
+                    </strong>
+
+                </div>
+
+
+                <div class="info-panel">
+
+                    <span>
+                        FOOTPRINT SCORE
+                    </span>
+
+                    <strong id="score">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div class="info-panel">
+
+                    <span>
+                        DIGITAL RISK
+                    </span>
+
+                    <strong id="risk">
+                        —
+                    </strong>
+
+                </div>
+
+
+                <div class="info-panel">
+
+                    <span>
+                        SCAN TIME
+                    </span>
+
+                    <strong id="scanTime">
+                        —
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- RESULTS -->
+
+            <div class="results-panel">
+
+                <div class="results-heading">
+
+                    <div>
+                        PLATFORM INTELLIGENCE
+                    </div>
+
+                    <span id="resultCount">
+                        0 PLATFORMS
+                    </span>
+
+                </div>
+
+                <div id="results" class="results-list">
+
+                    <div class="empty-state">
+
+                        <div class="empty-icon">
+                            ◈
+                        </div>
+
+                        <p>
+                            WAITING FOR SCAN
+                        </p>
+
+                        <small>
+                            Enter a username to begin.
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================================================= -->
+        <!-- PORT SCANNER -->
+        <!-- ================================================= -->
+
+        <section id="ports" class="tool-section">
+
+            <div class="section-header">
+
+                <div>
+
+                    <div class="section-code">
+                        MODULE 02
+                    </div>
+
+                    <h2>
+                        Network Port Scanner
+                    </h2>
+
+                    <p>
+                        Check common TCP services on a target.
+                    </p>
+
+                </div>
+
+                <div class="module-badge">
+                    NETWORK
+                </div>
+
+            </div>
+
+
+            <div class="tool-box">
+
+                <div class="input-label">
+                    TARGET HOST / IP
+                </div>
+
+                <div class="tool-input-row">
+
+                    <input id="portTarget" type="text" placeholder="127.0.0.1">
+
+                    <button id="portScanBtn" class="primary-btn">
+
+                        SCAN PORTS
+                        <span>→</span>
+
+                    </button>
+
+                </div>
+
+                <div class="input-note">
+                    Use this on systems you own or are authorized to test.
+                </div>
+
+            </div>
+
+
+            <div id="portSummary" class="summary-grid">
+
+                <div>
+                    <small>OPEN</small>
+                    <strong id="openPorts">0</strong>
+                </div>
+
+                <div>
+                    <small>CLOSED</small>
+                    <strong id="closedPorts">0</strong>
+                </div>
+
+                <div>
+                    <small>FILTERED</small>
+                    <strong id="filteredPorts">0</strong>
+                </div>
+
+                <div>
+                    <small>TOTAL</small>
+                    <strong id="totalPorts">0</strong>
+                </div>
+
+            </div>
+
+
+            <div class="table-panel">
+
+                <div class="table-title">
+                    PORT INTELLIGENCE
+                </div>
+
+                <div id="portResults" class="port-results">
+
+                    <div class="empty-state">
+                        <div class="empty-icon">⌁</div>
+                        <p>NO PORT SCAN YET</p>
+                        <small>Enter a target above.</small>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================================================= -->
+        <!-- LOG ANALYZER -->
+        <!-- ================================================= -->
+
+        <section id="logs" class="tool-section">
+
+            <div class="section-header">
+
+                <div>
+
+                    <div class="section-code">
+                        MODULE 03
+                    </div>
+
+                    <h2>
+                        Security Log Analyzer
+                    </h2>
+
+                    <p>
+                        Analyze pasted logs for suspicious security-related events.
+                    </p>
+
+                </div>
+
+                <div class="module-badge">
+                    SIEM
+                </div>
+
+            </div>
+
+
+            <div class="tool-box">
+
+                <div class="input-label">
+                    LOG DATA
+                </div>
+
+                <textarea id="logInput" placeholder="Paste security logs here...
+
+Example:
+Failed login attempt from 192.168.1.20
+Authentication failure for user admin
+HTTP 403 Forbidden
+Warning: suspicious request detected"></textarea>
+
+
+                <button id="analyzeLogBtn" class="primary-btn full-btn">
+
+                    ANALYZE LOGS
+                    <span>→</span>
+
+                </button>
+
+            </div>
+
+
+            <div class="log-summary">
+
+                <div>
+                    <small>LINES</small>
+                    <strong id="logLines">0</strong>
+                </div>
+
+                <div>
+                    <small>FAILED</small>
+                    <strong id="logFailed">0</strong>
+                </div>
+
+                <div>
+                    <small>ERRORS</small>
+                    <strong id="logErrors">0</strong>
+                </div>
+
+                <div>
+                    <small>WARNINGS</small>
+                    <strong id="logWarnings">0</strong>
+                </div>
+
+                <div>
+                    <small>SUSPICIOUS</small>
+                    <strong id="logSuspicious">0</strong>
+                </div>
+
+                <div>
+                    <small>RISK</small>
+                    <strong id="logRisk">—</strong>
+                </div>
+
+            </div>
+
+
+            <div class="table-panel">
+
+                <div class="table-title">
+                    DETECTED EVENTS
+                </div>
+
+                <div id="logResults">
+
+                    <div class="empty-state">
+                        <div class="empty-icon">!</div>
+                        <p>NO ANALYSIS YET</p>
+                        <small>Paste logs and start analysis.</small>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================================================= -->
+        <!-- IP ANALYZER -->
+        <!-- ================================================= -->
+
+        <section id="ip" class="tool-section">
+
+            <div class="section-header">
+
+                <div>
+
+                    <div class="section-code">
+                        MODULE 04
+                    </div>
+
+                    <h2>
+                        IP Intelligence
+                    </h2>
+
+                    <p>
+                        Retrieve publicly available information associated with an IP address.
+                    </p>
+
+                </div>
+
+                <div class="module-badge">
+                    GEO-IP
+                </div>
+
+            </div>
+
+
+            <div class="tool-box">
+
+                <div class="input-label">
+                    IP ADDRESS
+                </div>
+
+                <div class="tool-input-row">
+
+                    <input id="ipInput" type="text" placeholder="8.8.8.8">
+
+                    <button id="ipLookupBtn" class="primary-btn">
+
+                        LOOKUP IP
+                        <span>→</span>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div id="ipResults" class="ip-grid">
+
+                <div class="ip-card">
+                    <small>IP ADDRESS</small>
+                    <strong id="ipValue">—</strong>
+                </div>
+
+                <div class="ip-card">
+                    <small>ISP / ORGANIZATION</small>
+                    <strong id="ispValue">—</strong>
+                </div>
+
+                <div class="ip-card">
+                    <small>LOCATION</small>
+                    <strong id="locationValue">—</strong>
+                </div>
+
+                <div class="ip-card">
+                    <small>COUNTRY</small>
+                    <strong id="countryValue">—</strong>
+                </div>
+
+                <div class="ip-card">
+                    <small>ASN</small>
+                    <strong id="asnValue">—</strong>
+                </div>
+
+                <div class="ip-card">
+                    <small>TIMEZONE</small>
+                    <strong id="timezoneValue">—</strong>
+                </div>
+
+                <div class="ip-card">
+                    <small>LATITUDE</small>
+                    <strong id="latitudeValue">—</strong>
+                </div>
+
+                <div class="ip-card">
+                    <small>LONGITUDE</small>
+                    <strong id="longitudeValue">—</strong>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ================================================= -->
+    <!-- TOAST -->
+    <!-- ================================================= -->
+
+    <div id="toast" class="toast">
+
+        <div class="toast-icon">
+            !
+        </div>
+
+        <div>
+
+            <strong id="toastTitle">
+                SYSTEM
+            </strong>
+
+            <p id="toastMessage">
+                Ready.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <footer>
+
+        DIGITAL FOOTPRINT ANALYZER
+
+        <span>•</span> SECURITY INTELLIGENCE DASHBOARD
+
+        <br><br> CREATED BY
+        <b>ARNAB</b>
+
+    </footer>
+
+
+    <!-- ================================================= -->
+    <!-- JAVASCRIPT -->
+    <!-- ================================================= -->
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+</body>
+
+</html>
