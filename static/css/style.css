@@ -137,6 +137,12 @@ HEADER
     box-shadow: inset 0 0 20px rgba(255, 23, 68, 0.08), 0 0 25px rgba(255, 23, 68, 0.08);
     animation: markPulse 2s infinite;
 }
+.brand-mark img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
 
 @keyframes markPulse {
     50% {
